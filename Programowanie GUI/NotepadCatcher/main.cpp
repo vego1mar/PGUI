@@ -151,7 +151,7 @@ std::cout << ENTER_THE_NAME;
 std::wcin.getline( userTextWide, catcher::USER_TEXT_SIZE );
 std::wcout << userTextWide << std::endl;
 mainWindow = FindWindow( NULL, userTextWide );
-std::cout << (mainWindow ? SUCCESS : FAIL) << std::endl;
+std::cout << (mainWindow != NULL ? SUCCESS : FAIL) << std::endl;
 }
 #pragma endregion
 
@@ -159,11 +159,11 @@ std::cout << (mainWindow ? SUCCESS : FAIL) << std::endl;
 void FindEditorByClass( HWND & mainWindow, HWND & editWindow )
 {
 mainWindow = FindWindowEx( NULL, NULL, L"Notepad", NULL );
-std::cout << (mainWindow ? SUCCESS : FAIL) << std::endl;
+std::cout << (mainWindow != NULL ? SUCCESS : FAIL) << std::endl;
 editWindow = FindWindowEx( mainWindow, NULL, L"Edit", NULL );
-std::cout << (editWindow ? SUCCESS : FAIL) << std::endl;
-std::cout << MAIN_WINDOW_HANDLE << std::hex << mainWindow << std::endl;
-std::cout << EDIT_WINDOW_HANDLE << std::hex << editWindow << std::endl;
+std::cout << (editWindow != NULL ? SUCCESS : FAIL) << std::endl;
+std::cout << MAIN_WINDOW_HANDLE << &std::hex << mainWindow << std::endl;
+std::cout << EDIT_WINDOW_HANDLE << &std::hex << editWindow << std::endl;
 }
 #pragma endregion
 
@@ -178,7 +178,7 @@ if ( editWindow != NULL ) {
     return;
     }
 
-std::cout << "Wprowadz tekst: ";
+std::cout << ENTER_THE_TEXT;
 std::cout << "Edit window is a NULL." << std::endl;
 }
 #pragma endregion
@@ -206,7 +206,7 @@ return result;
 #pragma region GetEditComponentFromSaveAsDialog(...) : HWND
 HWND GetEditComponentFromSaveAsDialog( HWND & saveAsDialogParent )
 {
-HWND saveAsDialog_0 = FindWindow( NULL, L"Zapisywanie jako" );
+HWND saveAsDialog_0 = FindWindowEx( saveAsDialogParent, NULL, L"Zapisywanie jako", NULL );
 HWND saveAsDialog_1 = FindWindowEx( saveAsDialog_0, NULL, L"DUIViewWndClassName", NULL );
 HWND saveAsDialog_2 = FindWindowEx( saveAsDialog_1, NULL, L"DirectUIHWND", NULL );
 HWND saveAsDialog_3 = FindWindowEx( saveAsDialog_2, NULL, L"FloatNotifySink", NULL );
@@ -235,8 +235,8 @@ const std::string fileNameFromUser = GetFileNameFromUser();
 InvokeSaveAsDialog( mainWindow );
 HWND saveAsDialogEdit = GetEditComponentFromSaveAsDialog( mainWindow );
 
-std::cout << (saveAsDialogEdit ? SUCCESS : FAIL) << std::endl;
-std::cout << SAVE_AS_DIALOG_HANDLE << std::hex << saveAsDialogEdit << std::endl;
+std::cout << (saveAsDialogEdit != NULL ? SUCCESS : FAIL) << std::endl;
+std::cout << SAVE_AS_DIALOG_HANDLE << &std::hex << saveAsDialogEdit << std::endl;
 
 keystroke::PressAndReleaseTheKey( VK_DELETE, 1 );
 KeystrokeAlphaNumericText( fileNameFromUser );
@@ -247,8 +247,8 @@ keystroke::PressAndReleaseTheKey( VK_RETURN, 1 );
 #pragma region ShowNotepadCatcherInfo() : void
 void ShowNotepadCatcherInfo( const HWND & mainWindow, const HWND & editWindow )
 {
-std::cout << std::endl << MAIN_WINDOW_HANDLE << std::hex << mainWindow << std::endl;
-std::cout << std::endl << EDIT_WINDOW_HANDLE << std::hex << editWindow << std::endl;
+std::cout << std::endl << MAIN_WINDOW_HANDLE << &std::hex << mainWindow << std::endl;
+std::cout << std::endl << EDIT_WINDOW_HANDLE << &std::hex << editWindow << std::endl;
 }
 #pragma endregion
 }
@@ -314,7 +314,7 @@ if ( notepadMainWindow == NULL ) {
     std::cout << "Notatnik nie zosta\x88" " znaleziony." << std::endl;
     }
 
-std::cout << "Uchwyt okna: " << std::hex << notepadMainWindow << std::endl;
+std::cout << "Uchwyt okna: " << &std::hex << notepadMainWindow << std::endl;
 bool shouldLoopBeExecuting = true;
 
 do {
