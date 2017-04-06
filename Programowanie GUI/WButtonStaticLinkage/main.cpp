@@ -1,6 +1,7 @@
 #pragma region Headers includes
-#include "stdafx.h"
 #include "..\ButtonWrapper\WButton.hpp"
+#include <cstddef>
+#include <Windows.h>
 #pragma endregion
 
 /*
@@ -15,7 +16,15 @@
 #pragma region main()
 int main()
 {
-wrapper::WButton::Demo( NULL );
+wrapper::WButton button( NULL );
+button.SetPosition( 101, 11 );
+POINT position = button.GetPosition();
+button.Create();
+
+if ( button.IsCreated() ) {
+    return 1;
+    }
+
 return 0;
 }
 #pragma endregion

@@ -25,7 +25,7 @@
     <ClCompile Include="WButtonForDLL.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DED006CA-8E13-4DFF-B26A-302C3AEC5B59}</ProjectGuid>
+    <ProjectGuid>{4FB94618-9607-4937-9684-C7D57AE71B6C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>WButtonDynamicDLL</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -77,7 +77,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(UniversalCRT_IncludePath);$(UniversalCRT_IncludePath_x86);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(UniversalCRT_IncludePath);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

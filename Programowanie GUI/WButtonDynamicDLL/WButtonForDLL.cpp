@@ -4,12 +4,36 @@
 #pragma endregion
 
 #pragma region Recommended constructor
-#pragma comment(linker, "/EXPORT:WButton(HWND)=??0WButton@wrapper@@QAE@PAUHWND__@@@Z")
 wrapper::WButton::WButton( HWND owner )
 {
 ApplyDefaultSettings();
 m_ButtonOwnerWindow = owner;
 m_ModuleInstanceHandler = reinterpret_cast<HINSTANCE>( GetWindowLong(m_ButtonOwnerWindow, GWL_HINSTANCE) );
+}
+#pragma endregion
+
+#pragma region Overloaded call operator
+#pragma comment(linker, "/EXPORT:operator()=??RWButton@wrapper@@QAE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V23@@Z")
+std::string wrapper::WButton::operator()( std::string method )
+{
+std::string prototype = "";
+
+if ( method == "SetPosition" ) {
+    prototype = "void wrapper::WButton::SetPosition( int x, int y )";
+    return prototype;
+    }
+
+if ( method == "GetPosition" ) {
+    prototype = "POINT wrapper::WButton::GetPosition()";
+    return prototype;
+    }
+
+if ( method == "Demo" ) {
+    prototype = "static void Demo( HWND window );";
+    return prototype;
+    }
+
+return prototype;
 }
 #pragma endregion
 
@@ -211,8 +235,8 @@ return wideString;
 #pragma endregion
 
 #pragma region Demo() : void
-#pragma comment(linker, "/EXPORT:Demo()=?Demo@WButton@wrapper@@SAXPAUHWND__@@@Z")
-void EXPORT wrapper::WButton::Demo( HWND window )
+#pragma comment(linker, "/EXPORT:Demo=?Demo@WButton@wrapper@@SAXPAUHWND__@@@Z")
+void wrapper::WButton::Demo( HWND window )
 {
 WButton button( window );
 button.SetPosition( 50, 50 );

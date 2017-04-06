@@ -2,13 +2,14 @@
 #define WINAPI_BUTTON_HPP
 
 #if defined WINAPI_BUTTON_HPP_DLL_EXPORT
-#define EXPORT __declspec( dllexport )
+#define EXPORT_OR_IMPORT __declspec( dllexport )
 #else
-#define EXPORT __declspec( dllimport )
+#define EXPORT_OR_IMPORT __declspec( dllimport )
 #endif
 
 /*
- * ProjectProperties.C/C++.Preprocessor.PreprocessorDefinitions = %ORIGIN%,WINAPI_BUTTON_HPP_DLL_EXPORT
+ * Project properties | C/C++ | Preprocessor | PreprocessorDefinitions = %ORIGIN%,WINAPI_BUTTON_HPP_DLL_EXPORT
+ * Project properties | Linker | Debugging | Generate Debug info = No
  */
 
 #pragma region Headers includes
@@ -41,8 +42,9 @@ class WButton
 
     #pragma region Class construction
     public :
-        EXPORT WButton( HWND owner );
+        WButton( HWND owner );
         virtual ~WButton() = default;
+        __declspec(dllexport) std::string operator()( std::string method );
 
     private :
         WButton() = default;
@@ -52,28 +54,28 @@ class WButton
 
     #pragma region Interface
     public :
-        void Create();
-        bool IsCreated();
-        void SetStyle( DWORD style );
-        DWORD GetStyle();
-        void SetText( LPCWSTR text );
-        void SetText( const char * text, bool isMultiByte );
-        LPCWSTR GetText();
-        void SetPosition( int x, int y );
-        POINT GetPosition();
-        void SetSize( int width, int height );
-        SIZE GetSize();
-        void SetOwner( HWND owner );
-        HWND GetOwner();
-        HINSTANCE GetModuleInstanceHandler();
-        void SetAdditionalParameterOfCreation( LPVOID parameter );
-        LPVOID GetAdditionalParameterOfCreation();
-        void SetMenuIdentifier( HMENU identifier );
-        HMENU GetMenuIdentifier();
-        void SetExtendedStyle( DWORD extendedStyle );
-        DWORD GetExtendedStyle();
-        BOOL Refresh();
-        static void EXPORT Demo( HWND window );
+        void __declspec(dllexport) Create();
+        bool __declspec(dllexport) IsCreated();
+        void __declspec(dllexport) SetStyle( DWORD style );
+        DWORD __declspec(dllexport) GetStyle();
+        void __declspec(dllexport) SetText( LPCWSTR text );
+        void __declspec(dllexport) SetText( const char * text, bool isMultiByte );
+        LPCWSTR __declspec(dllexport) GetText();
+        void __declspec(dllexport) SetPosition( int x, int y );
+        POINT __declspec(dllexport) GetPosition();
+        void __declspec(dllexport) SetSize( int width, int height );
+        SIZE __declspec(dllexport) GetSize();
+        void __declspec(dllexport) SetOwner( HWND owner );
+        HWND __declspec(dllexport) GetOwner();
+        HINSTANCE __declspec(dllexport) GetModuleInstanceHandler();
+        void __declspec(dllexport) SetAdditionalParameterOfCreation( LPVOID parameter );
+        LPVOID __declspec(dllexport) GetAdditionalParameterOfCreation();
+        void __declspec(dllexport) SetMenuIdentifier( HMENU identifier );
+        HMENU __declspec(dllexport) GetMenuIdentifier();
+        void __declspec(dllexport) SetExtendedStyle( DWORD extendedStyle );
+        DWORD __declspec(dllexport) GetExtendedStyle();
+        BOOL __declspec(dllexport) Refresh();
+        static EXPORT_OR_IMPORT void Demo( HWND window );
 
     private :
         void ApplyDefaultSettings();
@@ -82,13 +84,6 @@ class WButton
 
     };
 #pragma endregion
-}
-#pragma endregion
-
-#pragma region DLL exports
-extern "C" EXPORT wrapper::WButton * WButton( HWND owner )
-{
-return new wrapper::WButton( owner );
 }
 #pragma endregion
 
