@@ -2,7 +2,7 @@
 sonar.version=1.0
 sonar.projectName=Programowanie GUI
 sonar.projectKey=PGUI
-sonar.sources=QCalculator/.
+sonar.sources=?/.
 sonar.exclusions=*/*.pro,*/*.user,*/*.ui
 sonar.organization=
 sonar.sourceEncoding=UTF-8
