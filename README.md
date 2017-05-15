@@ -5,6 +5,5 @@ Code around problems with graphical user interfaces.
 License: X11
 
 
-# NotepadCatcher
-Retrieving a pointer to the Notepad window. Automating 'Save as...' dialog handling. Name of the notepad (title bar) that is looking for capture is hardcoded.
-
+# qodbc
+Using an ODBC database for connecting with Excel 2016 under Qt.
