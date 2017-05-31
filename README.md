@@ -1,2 +1,2 @@
-# Programowanie GUI
-Code around problems with graphical user interfaces.
+# js_calculator
+A simple calculator in JavaScript using HTML <script> tag.
