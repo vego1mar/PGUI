@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Page. My page.</title>
+    <meta charset="UTF-8">
+</head>
+
+<body style='font-family : Consolas'>
+    <h1>A strange page with a strange (digital) sage</h1>
+    <hr>
+    <p id="number1" style="font-size:30px;color:darkseagreen"></p>
+    <p id="number2" style="font-size:30px;color:steelblue"></p>
+    <p id="result" style="font-size:60px;color:crimson"></p>
+    <hr>
+    <button id="digit1" type="button" onclick="addSymbol(1)">1</button>
+    <button id="digit2" type="button" style="height:25px;width:25px" onclick="addSymbol(2)">2</button>
+    <button id="digit3" type="button" style="height:30px;width:30px" onclick="addSymbol(3)">3</button>
+    <button id="digit4" type="button" style="height:35px;width:35px" onclick="addSymbol(4)">4</button>
+    <button id="digit5" type="button" style="height:40px;width:40px" onclick="addSymbol(5)">5</button>
+    <button id="digit6" type="button" style="height:45px;width:45px" onclick="addSymbol(6)">6</button>
+    <button id="digit7" type="button" style="height:50px;width:50px" onclick="addSymbol(7)">7</button>
+    <button id="digit8" type="button" style="height:55px;width:55px" onclick="addSymbol(8)">8</button>
+    <button id="digit9" type="button" style="height:60px;width:60px" onclick="addSymbol(9)">9</button>
+    <button id="digit0" type="button" style="height:65px;width:65px" onclick="addSymbol(0)">0</button>
+    <button id="point" type="button" style="height:70px;width:70px" onclick="addSymbol('.')">.</button>
+    <hr>
+    <button id="addition" type="button" style="height:40px;width:40px" onclick="noteOperation('add')">+</button>
+    <button id="substraction" type="button" style="height:40px;width:40px" onclick="noteOperation('substract')">-</button>
+    <button id="multiplication" type="button" style="height:40px;width:40px" onclick="noteOperation('multiply')">*</button>
+    <button id="division" type="button" style="height:40px;width:40px" onclick="noteOperation('divide')">/</button>
+    <button id="calculate" type="button" style="height:40px;width:40px" onclick="performOperation()">=</button>
+    <button id="clearOperands" type="button" style="height:50px;width:50px" onclick="clearOperands()">CLR</button>
+</body>
+
+<script>
+    var isNumber1Active = true;
+    var activeOperation = "none";
+
+    function addSymbol(digit) {
+        var controlName = "number1";
+
+        if (!isNumber1Active) {
+            controlName = "number2";
+        }
+
+        switch (digit) {
+            case 1:
+                document.getElementById(controlName).innerHTML += "1";
+                break;
+            case 2:
+                document.getElementById(controlName).innerHTML += "2";
+                break;
+            case 3:
+                document.getElementById(controlName).innerHTML += "3";
+                break;
+            case 4:
+                document.getElementById(controlName).innerHTML += "4";
+                break;
+            case 5:
+                document.getElementById(controlName).innerHTML += "5";
+                break;
+            case 6:
+                document.getElementById(controlName).innerHTML += "6";
+                break;
+            case 7:
+                document.getElementById(controlName).innerHTML += "7";
+                break;
+            case 8:
+                document.getElementById(controlName).innerHTML += "8";
+                break;
+            case 9:
+                document.getElementById(controlName).innerHTML += "9";
+                break;
+            case 0:
+                document.getElementById(controlName).innerHTML += "0";
+                break;
+            case '.':
+                document.getElementById(controlName).innerHTML += ".";
+                break;
+        }
+    }
+
+    function noteOperation(operation) {
+        activeOperation = operation;
+        isNumber1Active = false;
+    }
+
+    function clearOperands() {
+        document.getElementById("number1").innerHTML = "";
+        document.getElementById("number2").innerHTML = "";
+        document.getElementById("result").innerHTML = "";
+        isNumber1Active = true;
+    }
+
+    function performOperation() {
+        var digit1 = parseFloat(document.getElementById("number1").innerHTML);
+        var digit2 = parseFloat(document.getElementById("number2").innerHTML);
+        var currentOperation = "none";
+
+        switch (activeOperation) {
+            case "add":
+                currentOperation = document.getElementById("addition").innerHTML;
+                document.getElementById("result").innerHTML = digit1 + digit2;
+                break;
+            case "substract":
+                currentOperation = document.getElementById("substraction").innerHTML;
+                document.getElementById("result").innerHTML = digit1 - digit2;
+                break;
+            case "multiply":
+                currentOperation = document.getElementById("multiplication").innerHTML;
+                document.getElementById("result").innerHTML = digit1 * digit2;
+                break;
+            case "divide":
+                currentOperation = document.getElementById("division").innerHTML;
+                document.getElementById("result").innerHTML = digit1 / digit2;
+                break;
+            default:
+                document.getElementById("result").innerHTML = "No operation has been chosen.";
+                break;
+        }
+
+        console.log("OPERATION: " + digit1 + " " + currentOperation + " " + digit2 + " = " + document.getElementById("result").innerHTML);
+    }
+</script>
+</html>
